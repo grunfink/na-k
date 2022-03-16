@@ -1,0 +1,19 @@
+na-k - An asymmetric encryption tool by grunfink - public domain
+
+Encrypts/decrypts a stream of data using a pair of asymmetric keys.
+Usage:
+
+  na-k -G -p pubkey -s seckey     Generate key pairs
+  na-k -R -p pubkey -s seckey     Regenerate pubkey from seckey
+  na-k -E -p pubkey               Encrypt STDIN to STDOUT
+  na-k -D -s seckey               Decrypt STDIN to STDOUT
+
+Examples:
+ (on desktop)
+ $ na-k -G -p ~/.key.pub -s ~/.key.sec
+ $ scp ~/.key.pub server:~/.key.pub
+ (on server, secret key not needed there)
+ $ (cd / && sudo tar czvf - etc/) | na -E -p ~/.key.pub > encrypted
+ (back on desktop, to restore)
+ $ na-k -D -s ~/.key.sec < encrypted > decrypted.tar.gz
+
